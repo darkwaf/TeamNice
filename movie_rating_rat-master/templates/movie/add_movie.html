@@ -1,0 +1,33 @@
+{% extends "movie/base.html" %}
+
+{% block title %}Add Movie to Review{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+    <h1>Add a new Movie</h1>
+    <br/>
+
+    <div class="container">
+
+        <form class="span9" id="movie_form" method="post" action="/movie/add_movie/">
+
+            {% csrf_token %}
+            <!--Cross-Site Request Forgery (CSRF) token, which helps to protect and secure the HTTP POST action-->
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text}}<br/>
+            {{ field }}
+            {% endfor %}
+
+            <br/>
+            <input type="submit" name="submit" value="Create A movie Page"/>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}
