@@ -1,0 +1,9 @@
+	<ul class="nav nav-list">
+	   {% if mov_list %}
+		{% for mov in mov_list %}
+		  <li><a href="/movie/movie/{{ mov.url }}">{{ mov.name }}</a></li>
+		{% endfor %}
+	   {% else %}
+		<li>No movies at present.</li>
+	   {% endif %}
+	</ul>

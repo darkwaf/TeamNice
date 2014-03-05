@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap-fluid-adj.css'%} " rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css'%} " rel="stylesheet" media="screen">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'img/twd.ico'%}" />
+
+    <title> Movie Rat  - {% block title %}Movie Rating website!{% endblock %}</title>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/movie/">Movie Rat <br> <br> Movie Rating Website.<br> </br></a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav nav-list">
+			<li class="nav-header">Search</li>
+			<form>
+			<label></label>
+			<li><input  class="search-query span3" type="text" name="suggestion" value="" id="suggestion" /></li>
+			</form>
+		</ul>
+                <ul class="nav pull-right">
+                    {% if user.is_authenticated %}
+                    <li class="navbar-text">Welcome, {{ user.username }}!</li>
+                    <li><a href="/movie/profile/">Profile</a></li>
+                    <li><a href="/movie/logout/">Logout</a></li>
+                        {% else %}
+
+                    <li><a href="/movie/register/">Register</a></li>
+                    <li><a href="/movie/login/">Login</a></li>
+
+                    {% endif %}
+                </ul>
+
+                <ul class="nav">
+                    {% if user.is_authenticated %}
+                    <!-- <li><a href="/rango/restricted/">Restricted</a></li> -->
+                    <li><a href="/movie/add_movie/">Add Movie</a></li>
+
+                    {% endif %}
+
+                    <!--- <li><a href="/rango/search">Search</a></li> -->
+                    <li><a href="http://www.youtube.com/">YouTube</a></li>
+                    <li><a href="http://www.imdb.com/">IMDB</a></li>
+                    <li><a href="/movie/about/">About</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="span9">
+
+            {% block body_block %}
+            {% endblock %}
+
+        </div>
+    <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li></li>
+                    <li></li>
+                    {% block navbar %}
+                    {% endblock %}
+                </ul>
+
+		<ul class="nav nav-list">
+			<li class="nav-header">Find a Movie</li>
+			<form>
+			<label></label>
+			<li><input  class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+			</form>
+		</ul>
+
+        {% if mov_list %}
+		    <div id="movs">
+			    {% include 'movie/movie_list.html' with mov_list=mov_list %}
+		    </div>
+	    {% endif %}
+<!---
+    <div id="cats">
+		   {% if mov_list %}
+			<ul class="nav nav-list"><li>Category List</li></ul>
+			   {% include 'movie/movie_list.html' with mov_list=mov_list %}
+		   {% endif %}
+		</div>
+--->
+
+
+            </div>
+            <!--/.well -->
+
+        </div>
+        <!--/span-->
+        <!--/span-->
+    </div>
+    <!--/row-->
+
+</div>
+<!--/.fluid-container-->
+
+<hr>
+
+<footer>
+    <div class="container">
+        <p>&copy; Movie Rat: Movie Rating Website Glasgow University MSc IT/SD 2014</p>
+    </div>
+</footer>
+
+
+
+<hr/>
+
+
+<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/movie-ajax.js' %}"></script>
+
+</body>
+</html>
+

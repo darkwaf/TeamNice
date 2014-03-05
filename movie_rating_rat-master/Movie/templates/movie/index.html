@@ -1,0 +1,71 @@
+{% extends "movie/base.html" %}
+
+{% block title %}Welcome Movie Rat!{% endblock %}
+
+{% block body_block %}
+        <div> </div>
+<div class="hero-unit">
+    <h1>Movie Rat</h1>
+
+    <p>Movie Rating Website.</p>
+</div>
+<!--&lt;!&ndash;<div class="hero-unit">&ndash;&gt;-->
+        <!--<ul>-->
+     <!--<li><a href="http://www.youtube.com/">Commedy</a></li>-->
+                    <!--<li><a href="http://www.imdb.com/">Horror</a></li>-->
+                    <!--<li><a href="/movie/about/">Action</a></li>-->
+            <!--</ul>-->
+<!--<h4>Commedy</h4>  <h4>Horror</h4>  <h4>Action</h4>-->
+     <!--<h4>Drama</h4> <h4>Romance</h4>  <h4>More</h4>-->
+<!--</div>-->
+<div class="row-fluid">
+    <div class="span4">
+        <h3>Top Five Movies</h3>
+        {% if movie %}
+        <ul>
+            {% for movie in movie %}
+            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No movies at present.</strong>
+        {% endif %}
+
+    </div>
+    <div class="span4">
+        <h3>Least Rated Movies</h3>
+        {% if movie %}
+        <ul>
+            {% for movie in movie %}
+            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No movies at present.</strong>
+        {% endif %}
+
+    </div>
+    <div class="span4">
+        <h3>Top Rated Comments</h3>
+        {% if movies %}
+        <ul>
+            {% for movie in movies %}
+            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No movies at present.</strong>
+        {% endif %}
+
+    </div>
+
+
+
+    <!--/span-->
+
+    <!--/span-->
+</div><!--/row-->
+
+
+{% endblock %}
+
